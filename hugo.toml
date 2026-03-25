@@ -1,0 +1,51 @@
+baseURL = "https://aidetector.life/"
+languageCode = "en-us"
+title = "AI Detector — Detect AI-Generated Text Instantly"
+theme = "PaperMod"
+[pagination]
+  pagerSize = 10
+enableRobotsTXT = true
+buildDrafts = false
+
+[params]
+  env = "production"
+  title = "AI Detector"
+  description = "Free AI content detector. Check if text was written by ChatGPT, Claude, or other AI tools. Fast, accurate, and free."
+  keywords = ["ai detector", "ai content detector", "chatgpt detector", "ai writing detector", "detect ai text"]
+  author = "AI Detector Team"
+  defaultTheme = "auto"
+  ShowReadingTime = true
+  ShowShareButtons = true
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
+  ShowToc = true
+  TocOpen = false
+  
+  [params.homeInfoParams]
+    Title = "Detect AI-Generated Text Instantly"
+    Content = "Free, fast, and accurate AI content detector. Find out if text was written by ChatGPT, Claude, Gemini, or other AI tools."
+
+  [[params.socialIcons]]
+    name = "twitter"
+    url = "https://twitter.com"
+
+[menu]
+  [[menu.main]]
+    identifier = "tools"
+    name = "AI Detector Tool"
+    url = "/detector/"
+    weight = 10
+  [[menu.main]]
+    identifier = "blog"
+    name = "Blog"
+    url = "/posts/"
+    weight = 20
+  [[menu.main]]
+    identifier = "compare"
+    name = "Compare Tools"
+    url = "/compare/"
+    weight = 30
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Posts on AI Detector — Detect AI-Generated Text Instantly</title>
+    <link>https://aidetector.life/posts/</link>
+    <description>Recent content in Posts on AI Detector — Detect AI-Generated Text Instantly</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 25 Mar 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://aidetector.life/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to Detect AI-Generated Writing (7 Methods That Actually Work)</title>
+      <link>https://aidetector.life/posts/how-to-detect-ai-writing/</link>
+      <pubDate>Wed, 25 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>https://aidetector.life/posts/how-to-detect-ai-writing/</guid>
+      <description>Learn how to spot AI-generated text using both tools and manual techniques. Includes free methods anyone can use right now.</description>
+    </item>
+  </channel>
+</rss>

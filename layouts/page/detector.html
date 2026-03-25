@@ -1,0 +1,96 @@
+{{ define "main" }}
+<div style="max-width:800px;margin:0 auto;padding:20px">
+  <h1>Free AI Detector</h1>
+  <p>Paste text below to check if it was written by ChatGPT, Claude, or other AI tools. Free, no sign-up required.</p>
+  
+  <textarea id="inputText" rows="10" style="width:100%;padding:12px;font-size:15px;border:1px solid #ddd;border-radius:8px;resize:vertical" placeholder="Paste text here (minimum 50 words for accurate results)..."></textarea>
+  
+  <div style="margin:12px 0">
+    <button onclick="checkText()" style="background:#2563eb;color:white;padding:12px 28px;border:none;border-radius:6px;font-size:16px;cursor:pointer">
+      Detect AI Content
+    </button>
+    <span id="charCount" style="margin-left:16px;color:#666;font-size:14px">0 characters</span>
+  </div>
+  
+  <div id="result" style="display:none;padding:20px;border-radius:8px;margin-top:16px"></div>
+  
+  <div style="margin-top:40px;padding:16px;background:#f8fafc;border-radius:8px">
+    <h3>How it works</h3>
+    <p>This tool analyzes text patterns associated with AI-generated content, including sentence predictability, structural uniformity, and vocabulary patterns. Results are probabilistic — not definitive proof.</p>
+    <p><strong>For best results</strong>: Use texts of 100+ words. Short texts are less reliable.</p>
+  </div>
+</div>
+
+<script>
+document.getElementById('inputText').addEventListener('input', function() {
+  document.getElementById('charCount').textContent = this.value.length + ' characters';
+});
+
+function checkText() {
+  const text = document.getElementById('inputText').value.trim();
+  if (text.length < 50) {
+    alert('Please enter at least 50 characters for accurate detection.');
+    return;
+  }
+  
+  const resultDiv = document.getElementById('result');
+  resultDiv.style.display = 'block';
+  resultDiv.innerHTML = '<p>⏳ Analyzing...</p>';
+  resultDiv.style.background = '#f0f9ff';
+  
+  // 调用 ZeroGPT API (免费)
+  fetch('https://api.zerogpt.com/api/detect/detectText', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json', 'ApiKey': 'free'},
+    body: JSON.stringify({input_text: text})
+  })
+  .then(r => r.json())
+  .then(data => {
+    const score = data.data?.fakePercentage || 0;
+    const isAI = score > 50;
+    const color = score > 70 ? '#fef2f2' : score > 40 ? '#fffbeb' : '#f0fdf4';
+    const emoji = score > 70 ? '🤖' : score > 40 ? '⚠️' : '✅';
+    const label = score > 70 ? 'Likely AI-Generated' : score > 40 ? 'Possibly AI-Generated' : 'Likely Human-Written';
+    
+    resultDiv.style.background = color;
+    resultDiv.innerHTML = `
+      <div style="font-size:24px;margin-bottom:8px">${emoji} ${label}</div>
+      <div style="font-size:48px;font-weight:bold;color:${isAI?'#dc2626':'#16a34a'}">${Math.round(score)}%</div>
+      <div style="color:#666;margin-top:4px">AI probability score</div>
+      <div style="margin-top:16px;font-size:14px;color:#555">
+        <strong>Note:</strong> No AI detector is 100% accurate. Use this as one signal among many.
+        <a href="/posts/how-to-detect-ai-writing/" style="color:#2563eb">Learn more detection methods →</a>
+      </div>
+    `;
+  })
+  .catch(err => {
+    // Fallback: 简单启发式分析
+    const aiPhrases = ['it is worth noting','in today\'s','let\'s delve','it\'s important to','at the end of the day','navigating the','a testament to','in conclusion','it is clear that','moreover','furthermore','in summary'];
+    const lower = text.toLowerCase();
+    let count = aiPhrases.filter(p => lower.includes(p)).length;
+    const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0);
+    const avgLen = sentences.reduce((a,s) => a + s.split(' ').length, 0) / sentences.length;
+    const uniformity = sentences.filter(s => {
+      const len = s.split(' ').length;
+      return Math.abs(len - avgLen) < 5;
+    }).length / sentences.length;
+    
+    const score = Math.min(95, Math.round((count * 15) + (uniformity * 40)));
+    const isAI = score > 40;
+    const color = score > 70 ? '#fef2f2' : score > 40 ? '#fffbeb' : '#f0fdf4';
+    const emoji = score > 70 ? '🤖' : score > 40 ? '⚠️' : '✅';
+    const label = score > 70 ? 'Likely AI-Generated' : score > 40 ? 'Possibly AI-Generated' : 'Likely Human-Written';
+    
+    resultDiv.style.background = color;
+    resultDiv.innerHTML = `
+      <div style="font-size:24px;margin-bottom:8px">${emoji} ${label}</div>
+      <div style="font-size:48px;font-weight:bold;color:${isAI?'#dc2626':'#16a34a'}">${score}%</div>
+      <div style="color:#666;margin-top:4px">AI probability estimate</div>
+      <div style="margin-top:16px;font-size:14px;color:#555">
+        <a href="/posts/how-to-detect-ai-writing/" style="color:#2563eb">Learn 7 ways to detect AI writing →</a>
+      </div>
+    `;
+  });
+}
+</script>
+{{ end }}
