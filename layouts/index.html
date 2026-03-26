@@ -1,0 +1,505 @@
+{{- define "main" }}
+<style>
+/* ── Hero ── */
+.hero {
+  text-align: center;
+  padding: 48px 16px 32px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+.hero-badge {
+  display: inline-block;
+  background: #eff6ff; color: #2563eb;
+  font-size: 13px; font-weight: 600;
+  padding: 4px 14px; border-radius: 99px;
+  border: 1px solid #bfdbfe; margin-bottom: 16px;
+}
+.hero h1 {
+  font-size: 2.4rem; font-weight: 900;
+  line-height: 1.2; margin: 0 0 14px;
+}
+.hero h1 span { color: #2563eb; }
+.hero p {
+  font-size: 1.1rem; color: #555;
+  max-width: 560px; margin: 0 auto 28px;
+  line-height: 1.6;
+}
+.hero-features {
+  display: flex; justify-content: center;
+  gap: 20px; flex-wrap: wrap;
+  font-size: 13px; color: #666;
+  margin-bottom: 0;
+}
+.hero-features span::before { margin-right: 4px; }
+
+/* ── Detector embed ── */
+.detector-embed {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 16px 60px;
+}
+
+/* ── Input ── */
+#inputText {
+  width: 100%; padding: 16px;
+  font-size: 15px; line-height: 1.7;
+  border: 2px solid #e2e8f0; border-radius: 12px;
+  resize: vertical; box-sizing: border-box;
+  transition: border-color .2s; min-height: 180px;
+  font-family: inherit;
+}
+#inputText:focus { outline: none; border-color: #2563eb; }
+
+.toolbar {
+  display: flex; align-items: center;
+  gap: 10px; margin: 14px 0; flex-wrap: wrap;
+}
+#analyzeBtn {
+  background: #2563eb; color: #fff;
+  padding: 13px 36px; border: none;
+  border-radius: 8px; font-size: 16px;
+  font-weight: 700; cursor: pointer;
+  transition: background .2s;
+}
+#analyzeBtn:hover { background: #1d4ed8; }
+#analyzeBtn:disabled { background: #93c5fd; cursor: not-allowed; }
+#clearBtn {
+  background: #f1f5f9; color: #475569;
+  padding: 13px 20px; border: none;
+  border-radius: 8px; font-size: 15px;
+  cursor: pointer; transition: background .2s;
+}
+#clearBtn:hover { background: #e2e8f0; }
+#wordCount { color: #888; font-size: 14px; margin-left: auto; }
+
+/* ── Result ── */
+#result { display: none; margin-top: 24px; }
+.result-card { border-radius: 14px; padding: 26px; border: 2px solid transparent; }
+.result-card.ai    { background: #fef2f2; border-color: #fca5a5; }
+.result-card.mixed { background: #fffbeb; border-color: #fcd34d; }
+.result-card.human { background: #f0fdf4; border-color: #86efac; }
+
+.score-row { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; margin-bottom: 16px; }
+.score-big { font-size: 64px; font-weight: 900; line-height: 1; }
+.score-big.ai    { color: #dc2626; }
+.score-big.mixed { color: #d97706; }
+.score-big.human { color: #16a34a; }
+.verdict { font-size: 1.35rem; font-weight: 700; }
+.verdict.ai    { color: #991b1b; }
+.verdict.mixed { color: #92400e; }
+.verdict.human { color: #14532d; }
+.verdict-sub { font-size: 13px; color: #666; margin-top: 4px; }
+
+.bar-wrap { background: #e5e7eb; border-radius: 99px; height: 10px; margin: 12px 0 18px; }
+.bar-fill { height: 10px; border-radius: 99px; transition: width .9s ease; }
+.bar-fill.ai    { background: linear-gradient(90deg, #f87171, #dc2626); }
+.bar-fill.mixed { background: linear-gradient(90deg, #fcd34d, #d97706); }
+.bar-fill.human { background: linear-gradient(90deg, #86efac, #16a34a); }
+
+.signals { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 18px; }
+.sig-pill {
+  background: rgba(255,255,255,.75); border: 1px solid rgba(0,0,0,.08);
+  border-radius: 8px; padding: 10px 14px; font-size: 13px; min-width: 135px;
+}
+.sig-pill .label { color: #777; margin-bottom: 2px; }
+.sig-pill .val { font-weight: 700; font-size: 15px; }
+
+/* ── Tabs ── */
+.tabs { display: flex; border-bottom: 2px solid #e2e8f0; margin-bottom: 16px; }
+.tab-btn {
+  padding: 9px 18px; font-size: 14px; font-weight: 600;
+  cursor: pointer; border: none; background: transparent;
+  color: #888; border-bottom: 2px solid transparent;
+  margin-bottom: -2px; transition: color .15s, border-color .15s;
+}
+.tab-btn.active { color: #2563eb; border-bottom-color: #2563eb; }
+.tab-pane { display: none; }
+.tab-pane.active { display: block; }
+
+/* ── Heatmap ── */
+.heatmap-wrap {
+  background: #fff; border: 1px solid #e2e8f0; border-radius: 10px;
+  padding: 18px; line-height: 2.3; font-size: 15px;
+}
+.w { display: inline; border-radius: 3px; padding: 1px 0; position: relative; }
+.w:hover::after {
+  content: attr(data-score) '% AI';
+  position: absolute; background: #1e293b; color: #fff;
+  font-size: 11px; padding: 2px 6px; border-radius: 4px;
+  left: 0; top: -24px; white-space: nowrap; pointer-events: none; z-index: 10;
+}
+
+.hm-legend { display: flex; gap: 14px; margin-top: 10px; font-size: 12px; color: #666; flex-wrap: wrap; }
+.hm-legend span { display: flex; align-items: center; gap: 5px; }
+.hm-dot { width: 14px; height: 14px; border-radius: 3px; display: inline-block; }
+
+/* ── Sentence view ── */
+.sent-view {
+  background: #fff; border: 1px solid #e2e8f0; border-radius: 10px;
+  padding: 18px; line-height: 2.3; font-size: 15px;
+}
+.s-ai    { background: #fecaca; border-radius: 4px; padding: 1px 3px; }
+.s-mixed { background: #fef08a; border-radius: 4px; padding: 1px 3px; }
+
+/* ── Rewrite ── */
+.rewrite-intro { font-size: 14px; color: #555; margin-bottom: 14px; line-height: 1.6; }
+.rw-item {
+  background: #fff; border: 1px solid #e2e8f0; border-radius: 10px;
+  padding: 16px; margin-bottom: 12px;
+}
+.rw-original {
+  font-size: 14px; color: #dc2626; background: #fef2f2;
+  border-radius: 6px; padding: 8px 12px; margin-bottom: 10px; line-height: 1.6;
+}
+.rw-original::before { content: '🤖 Original: '; font-weight: 600; }
+.rw-suggestion {
+  font-size: 14px; color: #166534; background: #f0fdf4;
+  border-radius: 6px; padding: 8px 12px; line-height: 1.6;
+}
+.rw-suggestion::before { content: '✍️ Human version: '; font-weight: 600; }
+.rw-tip { font-size: 12px; color: #888; margin-top: 8px; font-style: italic; }
+
+/* ── Phrase chips ── */
+.phrase-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.phrase-chip {
+  background: #fee2e2; color: #991b1b;
+  border-radius: 6px; padding: 3px 10px;
+  font-size: 13px; font-family: monospace;
+}
+
+/* ── Disclaimer ── */
+.disclaimer {
+  margin-top: 18px; padding: 12px 16px; background: #f8fafc;
+  border-radius: 8px; font-size: 13px; color: #666; line-height: 1.6;
+  border-left: 3px solid #cbd5e1;
+}
+
+/* ── Why different ── */
+.why-section {
+  max-width: 900px; margin: 0 auto 60px;
+  padding: 0 16px;
+}
+.why-section h2 { font-size: 1.5rem; font-weight: 800; margin-bottom: 6px; }
+.why-section .sub { color: #666; font-size: 14px; margin-bottom: 24px; }
+.why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; }
+.why-card {
+  background: #f8fafc; border: 1px solid #e2e8f0;
+  border-radius: 12px; padding: 20px;
+}
+.why-card .icon { font-size: 28px; margin-bottom: 10px; }
+.why-card h3 { font-size: 15px; font-weight: 700; margin: 0 0 6px; }
+.why-card p { font-size: 13px; color: #666; margin: 0; line-height: 1.6; }
+.why-card.highlight { background: #eff6ff; border-color: #bfdbfe; }
+</style>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-badge">✦ 100% Free · No Sign-up · Instant Results</div>
+  <h1>See <span>exactly</span> which words<br>are AI-written</h1>
+  <p>The only free AI detector with <strong>word-level heatmap</strong> and <strong>rewrite suggestions</strong> — not just a score.</p>
+  <div class="hero-features">
+    <span>🌡️ Word heatmap</span>
+    <span>✍️ Rewrite suggestions</span>
+    <span>📊 Transparent scoring</span>
+    <span>⚡ Instant, no login</span>
+  </div>
+</div>
+
+<!-- Detector -->
+<div class="detector-embed">
+  <textarea id="inputText" placeholder="Paste your text here (100+ words recommended for best accuracy)..."></textarea>
+
+  <div class="toolbar">
+    <button id="analyzeBtn" onclick="analyzeText()">🔍 Analyze Text</button>
+    <button id="clearBtn" onclick="clearAll()">Clear</button>
+    <span id="wordCount">0 words</span>
+  </div>
+
+  <div id="result"></div>
+</div>
+
+<!-- Why different -->
+<div class="why-section">
+  <h2>Why AIDetector.life is Different</h2>
+  <p class="sub">Other detectors give you a number. We show you the evidence.</p>
+  <div class="why-grid">
+    <div class="why-card highlight">
+      <div class="icon">🌡️</div>
+      <h3>Word-Level Heatmap</h3>
+      <p>See which <em>individual words</em> triggered the AI signal — not just whole sentences. Hover to see the score.</p>
+    </div>
+    <div class="why-card highlight">
+      <div class="icon">✍️</div>
+      <h3>Rewrite Suggestions</h3>
+      <p>For each flagged sentence, get a more human-sounding alternative. Detector + humanizer in one tool.</p>
+    </div>
+    <div class="why-card">
+      <div class="icon">📊</div>
+      <h3>Transparent Scoring</h3>
+      <p>Every signal explained: AI phrases found, sentence uniformity (CV), lexical diversity (TTR). No black box.</p>
+    </div>
+    <div class="why-card">
+      <div class="icon">🆓</div>
+      <h3>Actually Free</h3>
+      <p>No word limits, no sign-up, no paywall. Run as many checks as you need.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+const AI_PHRASES = [
+  "it is worth noting","it's worth noting","it's important to note",
+  "it is important to","in today's","let's delve","delve into",
+  "in conclusion","in summary","to summarize","it is clear that",
+  "it's clear that","moreover","furthermore","additionally",
+  "at the end of the day","navigating the","a testament to",
+  "in the realm of","it goes without saying","needless to say",
+  "as an ai","as an ai language model","i cannot assist",
+  "i must emphasize","it's essential to","it is essential to",
+  "in today's world","the world of","the landscape of",
+  "plays a crucial role","plays an important role",
+  "is a great way to","has the potential to",
+  "take it to the next level","revolutionize the way",
+  "transformative impact","paradigm shift","in this article",
+  "when it comes to","it should be noted","one must consider",
+  "it can be argued","this is particularly","this is especially"
+];
+
+const REWRITE_MAP = [
+  [/furthermore,?\s*/gi, "Also, / And / On top of that, "],
+  [/moreover,?\s*/gi, "On top of that, / Plus, "],
+  [/additionally,?\s*/gi, "Also, / And "],
+  [/it is worth noting that/gi, "Note that / Worth mentioning: "],
+  [/it is important to note that/gi, "Keep in mind that / Remember: "],
+  [/in conclusion,?\s*/gi, "So, / Bottom line: / To wrap up, "],
+  [/in summary,?\s*/gi, "In short, / The short version: "],
+  [/it is clear that/gi, "Clearly, / Obviously, "],
+  [/plays a crucial role/gi, "matters a lot / is key"],
+  [/has the potential to/gi, "can / could"],
+  [/revolutionize the way/gi, "change how"],
+  [/in today's world,?\s*/gi, "Today, / Right now, "],
+  [/a testament to/gi, "proof of / evidence that"],
+  [/the landscape of/gi, "the world of / how [X] works"],
+  [/it's essential to/gi, "you need to / make sure to"],
+  [/it is essential to/gi, "you need to / make sure to"],
+  [/paradigm shift/gi, "major shift / big change"],
+  [/transformative impact/gi, "real impact / big effect"],
+  [/navigating the/gi, "dealing with / working through"],
+  [/when it comes to/gi, "for / with / regarding"],
+];
+
+document.getElementById('inputText').addEventListener('input', function() {
+  const n = this.value.trim().split(/\s+/).filter(w=>w.length>0).length;
+  document.getElementById('wordCount').textContent = n + ' words';
+});
+
+function clearAll() {
+  document.getElementById('inputText').value = '';
+  document.getElementById('wordCount').textContent = '0 words';
+  document.getElementById('result').style.display = 'none';
+}
+
+function computeScores(text) {
+  const sentences = text.match(/[^.!?]+[.!?]+/g) || [text];
+  const words = text.toLowerCase().split(/\s+/).filter(w=>w.length>0);
+  const lower = text.toLowerCase();
+
+  const phraseHits = AI_PHRASES.filter(p => lower.includes(p));
+  const phraseScore = Math.min(100, phraseHits.length * 13);
+
+  const sentLens = sentences.map(s => s.trim().split(/\s+/).length);
+  const avg = sentLens.reduce((a,b)=>a+b,0) / sentLens.length;
+  const stdDev = Math.sqrt(sentLens.reduce((a,b)=>a+Math.pow(b-avg,2),0)/sentLens.length);
+  const cv = stdDev / avg;
+  const burstScore = cv < 0.25 ? 88 : cv < 0.35 ? 68 : cv < 0.5 ? 42 : 18;
+
+  const unique = new Set(words.map(w=>w.replace(/[^a-z]/g,'')).filter(w=>w.length>2));
+  const ttr = unique.size / words.length;
+  const lexScore = ttr < 0.45 ? 72 : ttr < 0.55 ? 52 : ttr < 0.65 ? 30 : 14;
+
+  const commas = (text.match(/,/g)||[]).length;
+  const dashes = (text.match(/[—–-]/g)||[]).length;
+  const parens = (text.match(/\(/g)||[]).length;
+  const pRatio = commas / (dashes + parens + 1);
+  const punctScore = pRatio > 8 ? 68 : pRatio > 5 ? 48 : 22;
+
+  const awl = words.reduce((a,w)=>a+w.length,0)/words.length;
+  const wlScore = awl > 6 ? 62 : awl > 5 ? 44 : 22;
+
+  const composite = Math.min(97, Math.max(3, Math.round(
+    phraseScore*0.35 + burstScore*0.25 + lexScore*0.18 + punctScore*0.12 + wlScore*0.10
+  )));
+
+  const wordScores = computeWordScores(text);
+  const sentScores = sentences.map(s => {
+    const sl = s.toLowerCase();
+    const hit = AI_PHRASES.some(p => sl.includes(p));
+    const len = s.trim().split(/\s+/).length;
+    const dev = Math.abs(len - avg) / (avg||1);
+    let sc = 0;
+    if (hit) sc += 55;
+    if (dev < 0.2) sc += 28; else if (dev < 0.4) sc += 12;
+    return Math.min(100, sc);
+  });
+
+  return { composite, phraseHits, sentences, sentScores, wordScores,
+           cv: cv.toFixed(2), ttr: ttr.toFixed(2) };
+}
+
+function computeWordScores(text) {
+  const tokens = text.split(/(\s+)/);
+  const lower = text.toLowerCase();
+  const aiPositions = new Set();
+  let pos = 0;
+  for (const tok of tokens) {
+    for (const ph of AI_PHRASES) {
+      const idx = lower.indexOf(ph, Math.max(0, pos-5));
+      if (idx !== -1 && idx <= pos + tok.length && idx >= pos - ph.length) {
+        for (let i = idx; i < idx + ph.length; i++) aiPositions.add(i);
+      }
+    }
+    pos += tok.length;
+  }
+  const formalWords = ['therefore','however','nevertheless','consequently',
+    'subsequently','approximately','demonstrate','implement','utilize',
+    'facilitate','enhance','leverage','optimize','comprehensive','significant',
+    'substantial','effectively','efficiently','specifically','particularly',
+    'generally','typically','primarily','essentially','fundamentally'];
+  const result = [];
+  let charPos = 0;
+  for (const tok of tokens) {
+    if (/^\s+$/.test(tok)) {
+      result.push({ text: tok, score: 0, isSpace: true });
+    } else {
+      let overlap = 0;
+      for (let i = charPos; i < charPos + tok.length; i++) {
+        if (aiPositions.has(i)) overlap++;
+      }
+      const baseScore = overlap / tok.length > 0.4 ? 80 : 0;
+      const wl = tok.toLowerCase().replace(/[^a-z]/g,'');
+      const isFormal = formalWords.includes(wl);
+      result.push({ text: tok, score: Math.min(95, baseScore + (isFormal ? 45 : 0)), isSpace: false });
+    }
+    charPos += tok.length;
+  }
+  return result;
+}
+
+function generateRewrites(sentences, sentScores) {
+  return sentences.filter((_,i) => sentScores[i] >= 50).slice(0,5).map(sent => {
+    let rewritten = sent.trim();
+    let applied = [];
+    for (const [pattern, hint] of REWRITE_MAP) {
+      if (pattern.test(rewritten)) {
+        applied.push(hint.split(' / ')[0].trim());
+        rewritten = rewritten.replace(pattern, hint.split(' / ')[0]);
+        pattern.lastIndex = 0;
+      }
+    }
+    const tip = applied.length ? `Try: ${applied.join(', ')}` : 'Add a specific example or personal perspective.';
+    return { original: sent.trim(), rewritten, tip };
+  });
+}
+
+function analyzeText() {
+  const text = document.getElementById('inputText').value.trim();
+  if (text.split(/\s+/).filter(w=>w.length>0).length < 30) {
+    alert('Please enter at least 30 words.'); return;
+  }
+  const btn = document.getElementById('analyzeBtn');
+  btn.disabled = true; btn.textContent = 'Analyzing…';
+  setTimeout(() => {
+    const s = computeScores(text);
+    renderResult(s);
+    btn.disabled = false; btn.textContent = '🔍 Analyze Text';
+  }, 500);
+}
+
+function renderResult(s) {
+  const score = s.composite;
+  const cls = score >= 65 ? 'ai' : score >= 35 ? 'mixed' : 'human';
+  const emoji = score >= 65 ? '🤖' : score >= 35 ? '⚠️' : '✅';
+  const verdict = score >= 65 ? 'Likely AI-Generated' : score >= 35 ? 'Possibly AI-Assisted' : 'Likely Human-Written';
+  const sub = score >= 65 ? 'Strong AI linguistic patterns detected'
+            : score >= 35 ? 'Some AI patterns — may be edited AI or formal writing'
+            : 'Text reads like natural human writing';
+
+  const hmHtml = s.wordScores.map(tok => {
+    if (tok.isSpace) return tok.text;
+    const sc = tok.score;
+    const bg = sc >= 70 ? `rgba(220,38,38,${0.15+sc/200})` : sc >= 40 ? `rgba(217,119,6,${0.1+sc/300})` : 'transparent';
+    return `<span class="w" style="background:${bg}" data-score="${sc}">${esc(tok.text)}</span>`;
+  }).join('');
+
+  const sentHtml = s.sentences.map((sent,i) => {
+    const c = s.sentScores[i] >= 60 ? 's-ai' : s.sentScores[i] >= 30 ? 's-mixed' : '';
+    return `<span class="${c}">${esc(sent.trim())}</span> `;
+  }).join('');
+
+  const rewrites = generateRewrites(s.sentences, s.sentScores);
+  let rwHtml = rewrites.length === 0
+    ? `<div style="color:#16a34a;padding:16px;background:#f0fdf4;border-radius:8px;font-size:14px">✅ No heavily AI-flagged sentences found!</div>`
+    : `<p class="rewrite-intro">Flagged sentences with suggested human alternatives:</p>`
+      + rewrites.map(r=>`<div class="rw-item">
+          <div class="rw-original">${esc(r.original)}</div>
+          <div class="rw-suggestion">${esc(r.rewritten)}</div>
+          <div class="rw-tip">💡 ${esc(r.tip)}</div>
+        </div>`).join('');
+
+  const chipsHtml = s.phraseHits.length
+    ? `<div style="margin-top:12px"><div style="font-size:13px;color:#666;margin-bottom:6px"><strong>AI phrases detected:</strong></div>
+       <div class="phrase-chips">${s.phraseHits.map(p=>`<span class="phrase-chip">${esc(p)}</span>`).join('')}</div></div>` : '';
+
+  document.getElementById('result').style.display = 'block';
+  document.getElementById('result').innerHTML = `
+    <div class="result-card ${cls}">
+      <div class="score-row">
+        <div class="score-big ${cls}">${score}%</div>
+        <div><div class="verdict ${cls}">${emoji} ${verdict}</div><div class="verdict-sub">${sub}</div></div>
+      </div>
+      <div class="bar-wrap"><div class="bar-fill ${cls}" style="width:0%" id="bar"></div></div>
+      <div class="signals">
+        <div class="sig-pill"><div class="label">AI Phrases</div><div class="val">${s.phraseHits.length} found</div></div>
+        <div class="sig-pill"><div class="label">Uniformity CV</div><div class="val">${s.cv} ${parseFloat(s.cv)<0.35?'🤖':'✅'}</div></div>
+        <div class="sig-pill"><div class="label">Diversity TTR</div><div class="val">${s.ttr} ${parseFloat(s.ttr)<0.5?'🤖':'✅'}</div></div>
+        <div class="sig-pill"><div class="label">Sentences</div><div class="val">${s.sentences.length}</div></div>
+      </div>
+      ${chipsHtml}
+      <div class="tabs" style="margin-top:20px">
+        <button class="tab-btn active" onclick="switchTab(0,this)">🌡️ Word Heatmap</button>
+        <button class="tab-btn" onclick="switchTab(1,this)">📝 Sentence View</button>
+        <button class="tab-btn" onclick="switchTab(2,this)">✍️ Rewrite Suggestions</button>
+      </div>
+      <div class="tab-pane active" id="tab0">
+        <div class="heatmap-wrap">${hmHtml}</div>
+        <div class="hm-legend">
+          <span><span class="hm-dot" style="background:rgba(220,38,38,.55)"></span>High AI signal</span>
+          <span><span class="hm-dot" style="background:rgba(217,119,6,.35)"></span>Medium AI signal</span>
+          <span><span class="hm-dot" style="background:#e5e7eb"></span>Human-like</span>
+        </div>
+      </div>
+      <div class="tab-pane" id="tab1">
+        <div class="sent-view">${sentHtml}</div>
+        <div class="hm-legend" style="margin-top:8px">
+          <span><span class="hm-dot" style="background:#fecaca"></span>AI sentence</span>
+          <span><span class="hm-dot" style="background:#fef08a"></span>Possibly AI</span>
+        </div>
+      </div>
+      <div class="tab-pane" id="tab2"><div class="rewrite-panel">${rwHtml}</div></div>
+    </div>
+    <div class="disclaimer">⚠️ <strong>Note:</strong> No AI detector is 100% accurate. Use as one signal among many.
+      <a href="/posts/why-ai-detectors-get-it-wrong/" style="color:#2563eb">Learn about detection limits →</a>
+    </div>`;
+  document.getElementById('result').scrollIntoView({ behavior:'smooth', block:'start' });
+  setTimeout(() => { const b = document.getElementById('bar'); if(b) b.style.width = score+'%'; }, 50);
+}
+
+function switchTab(idx, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('tab'+idx).classList.add('active');
+}
+function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+</script>
+{{- end }}
