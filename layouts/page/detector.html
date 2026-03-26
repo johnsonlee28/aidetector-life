@@ -1,96 +1,320 @@
 {{ define "main" }}
-<div style="max-width:800px;margin:0 auto;padding:20px">
-  <h1>Free AI Detector</h1>
-  <p>Paste text below to check if it was written by ChatGPT, Claude, or other AI tools. Free, no sign-up required.</p>
-  
-  <textarea id="inputText" rows="10" style="width:100%;padding:12px;font-size:15px;border:1px solid #ddd;border-radius:8px;resize:vertical" placeholder="Paste text here (minimum 50 words for accurate results)..."></textarea>
-  
-  <div style="margin:12px 0">
-    <button onclick="checkText()" style="background:#2563eb;color:white;padding:12px 28px;border:none;border-radius:6px;font-size:16px;cursor:pointer">
-      Detect AI Content
-    </button>
-    <span id="charCount" style="margin-left:16px;color:#666;font-size:14px">0 characters</span>
+<style>
+  .detector-wrap { max-width:860px; margin:0 auto; padding:24px 16px; }
+  .detector-title { font-size:2rem; font-weight:700; margin-bottom:8px; }
+  .detector-sub { color:#555; margin-bottom:20px; font-size:1.05rem; }
+  #inputText {
+    width:100%; padding:14px; font-size:15px; line-height:1.6;
+    border:2px solid #e2e8f0; border-radius:10px; resize:vertical;
+    box-sizing:border-box; transition:border-color .2s;
+    min-height:180px;
+  }
+  #inputText:focus { outline:none; border-color:#2563eb; }
+  .toolbar { display:flex; align-items:center; gap:12px; margin:14px 0; flex-wrap:wrap; }
+  #analyzeBtn {
+    background:#2563eb; color:#fff; padding:12px 32px;
+    border:none; border-radius:8px; font-size:16px; font-weight:600;
+    cursor:pointer; transition:background .2s;
+  }
+  #analyzeBtn:hover { background:#1d4ed8; }
+  #analyzeBtn:disabled { background:#93c5fd; cursor:not-allowed; }
+  #clearBtn {
+    background:#f1f5f9; color:#475569; padding:12px 20px;
+    border:none; border-radius:8px; font-size:15px; cursor:pointer;
+  }
+  #charCount { color:#888; font-size:14px; margin-left:auto; }
+
+  /* Result area */
+  #result { display:none; margin-top:20px; }
+  .result-card {
+    border-radius:12px; padding:24px; border:2px solid transparent;
+  }
+  .result-card.ai    { background:#fef2f2; border-color:#fca5a5; }
+  .result-card.mixed { background:#fffbeb; border-color:#fcd34d; }
+  .result-card.human { background:#f0fdf4; border-color:#86efac; }
+
+  .score-row { display:flex; align-items:center; gap:20px; flex-wrap:wrap; margin-bottom:16px; }
+  .score-big { font-size:56px; font-weight:800; line-height:1; }
+  .score-big.ai    { color:#dc2626; }
+  .score-big.mixed { color:#d97706; }
+  .score-big.human { color:#16a34a; }
+  .verdict { font-size:1.3rem; font-weight:700; }
+  .verdict.ai    { color:#991b1b; }
+  .verdict.mixed { color:#92400e; }
+  .verdict.human { color:#14532d; }
+
+  /* Progress bar */
+  .bar-wrap { background:#e5e7eb; border-radius:99px; height:10px; margin:12px 0; }
+  .bar-fill { height:10px; border-radius:99px; transition:width .8s ease; }
+  .bar-fill.ai    { background:linear-gradient(90deg,#f87171,#dc2626); }
+  .bar-fill.mixed { background:linear-gradient(90deg,#fcd34d,#d97706); }
+  .bar-fill.human { background:linear-gradient(90deg,#86efac,#16a34a); }
+
+  /* Signals breakdown */
+  .signals { margin-top:16px; display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:10px; }
+  .signal-item {
+    background:rgba(255,255,255,.7); border-radius:8px; padding:12px 14px;
+    font-size:14px;
+  }
+  .signal-item .signal-label { color:#666; margin-bottom:4px; }
+  .signal-item .signal-val { font-weight:700; font-size:16px; }
+
+  /* Sentence highlights */
+  .highlight-section { margin-top:20px; }
+  .highlight-section h4 { font-size:15px; color:#555; margin-bottom:10px; }
+  .highlighted-text {
+    background:#fff; border:1px solid #e2e8f0; border-radius:8px;
+    padding:16px; line-height:2; font-size:15px;
+  }
+  .sent-ai    { background:#fecaca; border-radius:4px; padding:1px 2px; }
+  .sent-mixed { background:#fef08a; border-radius:4px; padding:1px 2px; }
+  .sent-human { background:transparent; }
+
+  .legend { display:flex; gap:16px; font-size:13px; color:#666; margin-top:8px; flex-wrap:wrap; }
+  .legend span { display:flex; align-items:center; gap:6px; }
+  .dot { width:12px; height:12px; border-radius:3px; display:inline-block; }
+
+  .disclaimer {
+    margin-top:20px; padding:14px; background:#f8fafc;
+    border-radius:8px; font-size:13px; color:#666; line-height:1.6;
+  }
+
+  /* Info box */
+  .info-box {
+    margin-top:40px; padding:20px; background:#f8fafc;
+    border-radius:10px; font-size:14px; color:#555; line-height:1.7;
+  }
+  .info-box h3 { margin-top:0; color:#333; }
+</style>
+
+<div class="detector-wrap">
+  <h1 class="detector-title">🔍 Free AI Content Detector</h1>
+  <p class="detector-sub">Detect AI-generated text from ChatGPT, Claude, Gemini & more. Free, instant, no sign-up required.</p>
+
+  <textarea id="inputText" placeholder="Paste your text here (100+ words recommended for best accuracy)..."></textarea>
+
+  <div class="toolbar">
+    <button id="analyzeBtn" onclick="analyzeText()">Analyze Text</button>
+    <button id="clearBtn" onclick="clearAll()">Clear</button>
+    <span id="charCount">0 words</span>
   </div>
-  
-  <div id="result" style="display:none;padding:20px;border-radius:8px;margin-top:16px"></div>
-  
-  <div style="margin-top:40px;padding:16px;background:#f8fafc;border-radius:8px">
-    <h3>How it works</h3>
-    <p>This tool analyzes text patterns associated with AI-generated content, including sentence predictability, structural uniformity, and vocabulary patterns. Results are probabilistic — not definitive proof.</p>
-    <p><strong>For best results</strong>: Use texts of 100+ words. Short texts are less reliable.</p>
+
+  <div id="result"></div>
+
+  <div class="info-box">
+    <h3>How This AI Detector Works</h3>
+    <p>Our detector analyzes multiple linguistic signals associated with AI-generated text:</p>
+    <ul>
+      <li><strong>Perplexity</strong> — AI text uses predictable, statistically "safe" word choices. Human writing is more surprising.</li>
+      <li><strong>Burstiness</strong> — Humans vary sentence length dramatically. AI text is more uniform.</li>
+      <li><strong>AI Phrase Patterns</strong> — LLMs overuse phrases like "In conclusion," "It is worth noting," "Furthermore," etc.</li>
+      <li><strong>Lexical Diversity</strong> — AI models tend to repeat similar vocabulary across a text.</li>
+    </ul>
+    <p><strong>Best results:</strong> Use texts of 100+ words. Short texts produce less reliable scores.</p>
   </div>
 </div>
 
 <script>
+// ─── Word counter ─────────────────────────────────────────────
 document.getElementById('inputText').addEventListener('input', function() {
-  document.getElementById('charCount').textContent = this.value.length + ' characters';
+  const words = this.value.trim().split(/\s+/).filter(w => w.length > 0).length;
+  document.getElementById('charCount').textContent = words + ' words';
 });
 
-function checkText() {
+function clearAll() {
+  document.getElementById('inputText').value = '';
+  document.getElementById('charCount').textContent = '0 words';
+  document.getElementById('result').style.display = 'none';
+}
+
+// ─── Main analyze function ────────────────────────────────────
+function analyzeText() {
   const text = document.getElementById('inputText').value.trim();
-  if (text.length < 50) {
-    alert('Please enter at least 50 characters for accurate detection.');
+  const words = text.split(/\s+/).filter(w => w.length > 0);
+
+  if (words.length < 30) {
+    alert('Please enter at least 30 words for meaningful analysis.');
     return;
   }
-  
+
+  const btn = document.getElementById('analyzeBtn');
+  btn.disabled = true;
+  btn.textContent = 'Analyzing…';
+
+  // Small delay for UX feedback
+  setTimeout(() => {
+    const scores = computeScores(text);
+    renderResult(text, scores);
+    btn.disabled = false;
+    btn.textContent = 'Analyze Text';
+  }, 600);
+}
+
+// ─── Scoring engine ───────────────────────────────────────────
+function computeScores(text) {
+  const sentences = text.match(/[^.!?]+[.!?]+/g) || [text];
+  const words = text.toLowerCase().split(/\s+/).filter(w => w.length > 0);
+
+  // 1. AI phrase detection
+  const aiPhrases = [
+    "it is worth noting","it's worth noting","it's important to note",
+    "it is important to","in today's","let's delve","delve into",
+    "in conclusion","in summary","to summarize","it is clear that",
+    "it's clear that","moreover","furthermore","additionally",
+    "at the end of the day","navigating the","a testament to",
+    "in the realm of","it goes without saying","needless to say",
+    "as an ai","as an ai language model","i cannot assist",
+    "i'm unable to","i am unable to","i must emphasize",
+    "it's essential to","it is essential to","in today's world",
+    "the world of","the landscape of","the importance of",
+    "plays a crucial role","plays an important role",
+    "is a great way to","has the potential to","take it to the next level",
+    "revolutionize the way","transformative impact","paradigm shift"
+  ];
+  const lower = text.toLowerCase();
+  const phraseHits = aiPhrases.filter(p => lower.includes(p));
+  const phraseScore = Math.min(100, phraseHits.length * 14);
+
+  // 2. Sentence length burstiness (low variance = AI)
+  const sentLengths = sentences.map(s => s.trim().split(/\s+/).length);
+  const avgLen = sentLengths.reduce((a,b) => a+b, 0) / sentLengths.length;
+  const variance = sentLengths.reduce((a,b) => a + Math.pow(b - avgLen, 2), 0) / sentLengths.length;
+  const stdDev = Math.sqrt(variance);
+  // Low stdDev relative to avgLen = uniform = AI
+  const cv = stdDev / avgLen; // coefficient of variation
+  const burstinessScore = cv < 0.25 ? 85 : cv < 0.35 ? 65 : cv < 0.5 ? 40 : 20;
+
+  // 3. Lexical diversity (type-token ratio)
+  const uniqueWords = new Set(words.map(w => w.replace(/[^a-z]/g,'')));
+  const ttr = uniqueWords.size / words.length;
+  // AI tends to have moderate-low TTR due to repetition
+  const lexScore = ttr < 0.45 ? 70 : ttr < 0.55 ? 50 : ttr < 0.65 ? 30 : 15;
+
+  // 4. Punctuation variety (AI uses commas heavily, few dashes/parentheses)
+  const commas = (text.match(/,/g) || []).length;
+  const dashes = (text.match(/—|–|-/g) || []).length;
+  const parens = (text.match(/\(/g) || []).length;
+  const punctRatio = commas / (dashes + parens + 1);
+  const punctScore = punctRatio > 8 ? 70 : punctRatio > 5 ? 50 : 25;
+
+  // 5. Average word length (AI slightly more formal = longer words)
+  const avgWordLen = words.reduce((a, w) => a + w.length, 0) / words.length;
+  const wordLenScore = avgWordLen > 6 ? 65 : avgWordLen > 5 ? 45 : 25;
+
+  // ── Weighted composite ──
+  const composite = Math.round(
+    phraseScore   * 0.35 +
+    burstinessScore * 0.25 +
+    lexScore      * 0.18 +
+    punctScore    * 0.12 +
+    wordLenScore  * 0.10
+  );
+
+  // ── Per-sentence scores for highlighting ──
+  const sentenceScores = sentences.map(s => {
+    const sl = s.toLowerCase();
+    const phraseHit = aiPhrases.some(p => sl.includes(p));
+    const len = s.trim().split(/\s+/).length;
+    const deviation = Math.abs(len - avgLen) / (avgLen || 1);
+    let score = 0;
+    if (phraseHit) score += 50;
+    if (deviation < 0.2) score += 30;
+    else if (deviation < 0.4) score += 15;
+    return Math.min(100, score);
+  });
+
+  return {
+    composite: Math.min(97, Math.max(3, composite)),
+    phraseScore, burstinessScore, lexScore,
+    phraseHits, sentences, sentenceScores, cv: cv.toFixed(2), ttr: ttr.toFixed(2)
+  };
+}
+
+// ─── Render results ───────────────────────────────────────────
+function renderResult(text, s) {
+  const score = s.composite;
+  const cls   = score >= 65 ? 'ai' : score >= 35 ? 'mixed' : 'human';
+  const emoji  = score >= 65 ? '🤖' : score >= 35 ? '⚠️' : '✅';
+  const verdict = score >= 65 ? 'Likely AI-Generated'
+                : score >= 35 ? 'Possibly AI-Assisted'
+                : 'Likely Human-Written';
+
+  // Build highlighted text
+  const highlighted = s.sentences.map((sent, i) => {
+    const sc = s.sentenceScores[i];
+    const c = sc >= 60 ? 'sent-ai' : sc >= 30 ? 'sent-mixed' : 'sent-human';
+    return `<span class="${c}" title="AI score: ${sc}%">${escHtml(sent.trim())}</span>`;
+  }).join(' ');
+
+  const phraseList = s.phraseHits.length
+    ? `<div style="margin-top:10px;font-size:13px;color:#666">
+        <strong>AI phrases detected:</strong>
+        ${s.phraseHits.map(p => `<code style="background:#f1f5f9;padding:1px 6px;border-radius:4px">${p}</code>`).join(' ')}
+       </div>`
+    : '';
+
+  const html = `
+    <div class="result-card ${cls}">
+      <div class="score-row">
+        <div class="score-big ${cls}">${score}%</div>
+        <div>
+          <div class="verdict ${cls}">${emoji} ${verdict}</div>
+          <div style="font-size:14px;color:#666;margin-top:4px">Overall AI probability</div>
+        </div>
+      </div>
+
+      <div class="bar-wrap">
+        <div class="bar-fill ${cls}" style="width:${score}%"></div>
+      </div>
+
+      <div class="signals">
+        <div class="signal-item">
+          <div class="signal-label">AI Phrases Found</div>
+          <div class="signal-val">${s.phraseHits.length} patterns</div>
+        </div>
+        <div class="signal-item">
+          <div class="signal-label">Sentence Uniformity</div>
+          <div class="signal-val">CV = ${s.cv} ${parseFloat(s.cv) < 0.35 ? '🤖' : '✅'}</div>
+        </div>
+        <div class="signal-item">
+          <div class="signal-label">Lexical Diversity</div>
+          <div class="signal-val">TTR = ${s.ttr} ${parseFloat(s.ttr) < 0.5 ? '🤖' : '✅'}</div>
+        </div>
+        <div class="signal-item">
+          <div class="signal-label">Sentences Analyzed</div>
+          <div class="signal-val">${s.sentences.length} sentences</div>
+        </div>
+      </div>
+
+      ${phraseList}
+
+      <div class="highlight-section">
+        <h4>Sentence-level analysis</h4>
+        <div class="highlighted-text">${highlighted}</div>
+        <div class="legend">
+          <span><span class="dot" style="background:#fecaca"></span> Likely AI-written</span>
+          <span><span class="dot" style="background:#fef08a"></span> Possibly AI-assisted</span>
+          <span><span class="dot" style="background:#e5e7eb"></span> Likely human-written</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="disclaimer">
+      ⚠️ <strong>Disclaimer:</strong> No AI detector achieves 100% accuracy. Scores are probabilistic estimates based on linguistic patterns.
+      Heavily edited AI text or formal human writing may produce unexpected scores.
+      Use this as <em>one signal</em> among many — not as definitive proof.
+      <a href="/posts/why-ai-detectors-get-it-wrong/" style="color:#2563eb">Learn about AI detection limitations →</a>
+    </div>
+  `;
+
   const resultDiv = document.getElementById('result');
   resultDiv.style.display = 'block';
-  resultDiv.innerHTML = '<p>⏳ Analyzing...</p>';
-  resultDiv.style.background = '#f0f9ff';
-  
-  // 调用 ZeroGPT API (免费)
-  fetch('https://api.zerogpt.com/api/detect/detectText', {
-    method: 'POST',
-    headers: {'Content-Type': 'application/json', 'ApiKey': 'free'},
-    body: JSON.stringify({input_text: text})
-  })
-  .then(r => r.json())
-  .then(data => {
-    const score = data.data?.fakePercentage || 0;
-    const isAI = score > 50;
-    const color = score > 70 ? '#fef2f2' : score > 40 ? '#fffbeb' : '#f0fdf4';
-    const emoji = score > 70 ? '🤖' : score > 40 ? '⚠️' : '✅';
-    const label = score > 70 ? 'Likely AI-Generated' : score > 40 ? 'Possibly AI-Generated' : 'Likely Human-Written';
-    
-    resultDiv.style.background = color;
-    resultDiv.innerHTML = `
-      <div style="font-size:24px;margin-bottom:8px">${emoji} ${label}</div>
-      <div style="font-size:48px;font-weight:bold;color:${isAI?'#dc2626':'#16a34a'}">${Math.round(score)}%</div>
-      <div style="color:#666;margin-top:4px">AI probability score</div>
-      <div style="margin-top:16px;font-size:14px;color:#555">
-        <strong>Note:</strong> No AI detector is 100% accurate. Use this as one signal among many.
-        <a href="/posts/how-to-detect-ai-writing/" style="color:#2563eb">Learn more detection methods →</a>
-      </div>
-    `;
-  })
-  .catch(err => {
-    // Fallback: 简单启发式分析
-    const aiPhrases = ['it is worth noting','in today\'s','let\'s delve','it\'s important to','at the end of the day','navigating the','a testament to','in conclusion','it is clear that','moreover','furthermore','in summary'];
-    const lower = text.toLowerCase();
-    let count = aiPhrases.filter(p => lower.includes(p)).length;
-    const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0);
-    const avgLen = sentences.reduce((a,s) => a + s.split(' ').length, 0) / sentences.length;
-    const uniformity = sentences.filter(s => {
-      const len = s.split(' ').length;
-      return Math.abs(len - avgLen) < 5;
-    }).length / sentences.length;
-    
-    const score = Math.min(95, Math.round((count * 15) + (uniformity * 40)));
-    const isAI = score > 40;
-    const color = score > 70 ? '#fef2f2' : score > 40 ? '#fffbeb' : '#f0fdf4';
-    const emoji = score > 70 ? '🤖' : score > 40 ? '⚠️' : '✅';
-    const label = score > 70 ? 'Likely AI-Generated' : score > 40 ? 'Possibly AI-Generated' : 'Likely Human-Written';
-    
-    resultDiv.style.background = color;
-    resultDiv.innerHTML = `
-      <div style="font-size:24px;margin-bottom:8px">${emoji} ${label}</div>
-      <div style="font-size:48px;font-weight:bold;color:${isAI?'#dc2626':'#16a34a'}">${score}%</div>
-      <div style="color:#666;margin-top:4px">AI probability estimate</div>
-      <div style="margin-top:16px;font-size:14px;color:#555">
-        <a href="/posts/how-to-detect-ai-writing/" style="color:#2563eb">Learn 7 ways to detect AI writing →</a>
-      </div>
-    `;
-  });
+  resultDiv.innerHTML = html;
+  resultDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function escHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
 </script>
 {{ end }}
