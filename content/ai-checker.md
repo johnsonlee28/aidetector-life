@@ -51,6 +51,17 @@ The terms are used interchangeably. An **AI checker** typically refers to a quic
 
 ---
 
+
+## Explore More Features
+
+AIDetector.life goes beyond a simple score:
+
+- 🌡️ [Word-Level Heatmap](/word-highlighting/) — See exactly *which words* triggered the AI signal
+- ⚠️ [AI Detector False Positives](/false-positive/) — Understand why human writing sometimes gets flagged
+- ✍️ [Rewrite Suggestions](/rewrite-suggestions/) — Get instant alternatives for AI-sounding sentences
+
+---
+
 ## Frequently Asked Questions
 
 **Is this AI checker free?**

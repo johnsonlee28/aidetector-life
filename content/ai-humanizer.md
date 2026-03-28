@@ -47,6 +47,13 @@ If it sounds stiff when spoken, it'll read stiff too. Edit until it sounds like 
 
 ---
 
+
+## Use the Heatmap to Guide Your Editing
+
+Not sure which sentences to humanize first? Use our [word-level heatmap](/word-highlighting/) to see exactly which phrases are triggering the AI signal — then use the [rewrite suggestions](/rewrite-suggestions/) to fix them.
+
+---
+
 ## How AIDetector.life Helps
 
 Use our free AI checker to **test your text before and after humanizing**. This gives you a concrete score to work toward, so you know when your content reads naturally enough.
