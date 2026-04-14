@@ -49,9 +49,19 @@ buildDrafts = false
     weight = 20
   [[menu.main]]
     identifier = "compare"
-    name = "Compare Tools"
+    name = "Compare"
     url = "/compare/"
     weight = 30
+  [[menu.main]]
+    identifier = "faq"
+    name = "FAQ"
+    url = "/faq/"
+    weight = 40
+  [[menu.main]]
+    identifier = "about"
+    name = "About"
+    url = "/about/"
+    weight = 50
 
 [outputs]
   home = ["HTML", "RSS", "JSON"]
