@@ -7,6 +7,10 @@ tags: ["how-to", "ai detector", "guide"]
 author: "AI Detector Team"
 showToc: true
 draft: false
+
+cover:
+  image: "/images/covers/how-to-detect-ai-writing.png"
+  alt: "how-to-detect-ai-writing"
 ---
 
 AI writing has gotten very good. In 2026, the gap between human and AI writing has narrowed significantly — but it hasn't closed entirely.

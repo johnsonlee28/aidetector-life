@@ -8,6 +8,10 @@ author: "AI Detector Team"
 showToc: true
 TocOpen: false
 draft: false
+
+cover:
+  image: "/images/covers/best-ai-detector-tools-2026.png"
+  alt: "best-ai-detector-tools-2026"
 ---
 
 If you need to know whether a piece of text was written by AI, you're not alone. Teachers, editors, hiring managers, and content teams are all asking the same question in 2026.

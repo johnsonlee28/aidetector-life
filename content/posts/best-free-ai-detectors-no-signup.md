@@ -7,6 +7,10 @@ tags: ["ai detector", "free", "tools"]
 author: "AI Detector Team"
 showToc: true
 draft: false
+
+cover:
+  image: "/images/covers/best-free-ai-detectors-no-signup.png"
+  alt: "best-free-ai-detectors-no-signup"
 ---
 
 Most AI detector tools want your email address before they let you check a single sentence. Here are 5 that don't — completely free, no account required.

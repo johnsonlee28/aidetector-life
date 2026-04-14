@@ -6,6 +6,10 @@ url: "/ai-humanizer/"
 date: 2026-03-26
 lastmod: 2026-03-26
 draft: false
+
+cover:
+  image: "/images/covers/ai-humanizer.png"
+  alt: "ai-humanizer"
 ---
 
 ## What Is an AI Humanizer?

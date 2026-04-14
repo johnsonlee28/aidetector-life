@@ -5,6 +5,10 @@ keywords: ["chatgpt detector", "detect chatgpt text", "chatgpt checker", "is thi
 date: 2026-03-26
 lastmod: 2026-03-26
 draft: false
+
+cover:
+  image: "/images/covers/chatgpt-detector.png"
+  alt: "chatgpt-detector"
 ---
 
 ChatGPT has become one of the most widely used AI writing tools in the world. With millions of users generating essays, emails, articles, and reports daily, the need to detect ChatGPT-generated text has never been greater.

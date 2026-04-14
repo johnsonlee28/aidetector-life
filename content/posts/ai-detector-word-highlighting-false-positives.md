@@ -5,6 +5,10 @@ keywords: ["ai detector false positive", "ai detector word highlighting", "ai de
 date: 2026-04-03
 lastmod: 2026-04-03
 draft: false
+
+cover:
+  image: "/images/covers/ai-detector-word-highlighting-false-positives.png"
+  alt: "ai-detector-word-highlighting-false-positives"
 tags: ["false positive", "word highlighting", "how-to", "guide"]
 ---
 Then you run it through an AI detector. The result: **87% AI-generated.**

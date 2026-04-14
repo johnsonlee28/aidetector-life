@@ -8,6 +8,10 @@ author: "AI Detector Team"
 showToc: true
 TocOpen: false
 draft: false
+
+cover:
+  image: "/images/covers/which-sentences-are-ai-written.png"
+  alt: "which-sentences-are-ai-written"
 ---
 
 One of the most frustrating things about AI detectors is that they usually give you a score without giving you a map.

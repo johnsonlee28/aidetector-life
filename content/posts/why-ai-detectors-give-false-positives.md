@@ -5,6 +5,10 @@ keywords: ["ai detector false positive", "ai detector wrong", "human writing fla
 date: 2026-03-28
 lastmod: 2026-03-28
 draft: false
+
+cover:
+  image: "/images/covers/why-ai-detectors-give-false-positives.png"
+  alt: "why-ai-detectors-give-false-positives"
 tags: ["accuracy", "how-to", "guide"]
 ---
 

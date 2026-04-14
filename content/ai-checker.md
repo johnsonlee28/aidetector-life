@@ -6,6 +6,10 @@ url: "/ai-checker/"
 date: 2026-03-26
 lastmod: 2026-03-26
 draft: false
+
+cover:
+  image: "/images/covers/ai-checker.png"
+  alt: "ai-checker"
 ---
 
 ## What Is an AI Checker?

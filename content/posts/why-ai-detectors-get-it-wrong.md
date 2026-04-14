@@ -7,6 +7,10 @@ tags: ["ai detector", "accuracy", "guide"]
 author: "AI Detector Team"
 showToc: true
 draft: false
+
+cover:
+  image: "/images/covers/why-ai-detectors-get-it-wrong.png"
+  alt: "why-ai-detectors-get-it-wrong"
 ---
 
 A teacher in Texas failed a student's essay for being "AI-generated." The student had written every word himself. An HR manager rejected a job application after their AI detector flagged the cover letter. The applicant had never used AI.

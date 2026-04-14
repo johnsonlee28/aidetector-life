@@ -6,6 +6,10 @@ url: "/rewrite-suggestions/"
 date: 2026-03-28
 lastmod: 2026-03-28
 draft: false
+
+cover:
+  image: "/images/covers/rewrite-suggestions.png"
+  alt: "rewrite-suggestions"
 ---
 
 ## Detection Without Rewriting Is Half the Job

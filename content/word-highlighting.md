@@ -6,6 +6,10 @@ url: "/word-highlighting/"
 date: 2026-03-28
 lastmod: 2026-03-28
 draft: false
+
+cover:
+  image: "/images/covers/word-highlighting.png"
+  alt: "word-highlighting"
 ---
 
 ## What Is AI Detector Word Highlighting?

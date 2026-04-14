@@ -8,6 +8,10 @@ author: "AI Detector Team"
 showToc: true
 TocOpen: false
 draft: false
+
+cover:
+  image: "/images/covers/ai-detector-accuracy.png"
+  alt: "ai-detector-accuracy"
 ---
 
 If you have ever pasted a piece of writing into an AI detector and gotten back a score like **91% AI-generated**, you have probably asked the obvious question:

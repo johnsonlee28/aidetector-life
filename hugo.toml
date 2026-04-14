@@ -21,6 +21,12 @@ buildDrafts = false
   ShowCodeCopyButtons = true
   ShowToc = true
   TocOpen = false
+
+  [params.cover]
+    linkFullImages = true
+    responsiveImages = false
+
+  images = ["images/og-default.png"]
   
   [params.homeInfoParams]
     Title = "Detect AI-Generated Text Instantly"
@@ -28,7 +34,7 @@ buildDrafts = false
 
   [[params.socialIcons]]
     name = "twitter"
-    url = "https://twitter.com"
+    url = "https://twitter.com/aidetectorlife"
 
 [menu]
   [[menu.main]]

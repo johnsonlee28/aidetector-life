@@ -8,6 +8,10 @@ author: "AI Detector Team"
 showToc: true
 TocOpen: false
 draft: false
+
+cover:
+  image: "/images/covers/ai-detector-rewrite-suggestions.png"
+  alt: "ai-detector-rewrite-suggestions"
 ---
 
 You run your draft through an AI detector.

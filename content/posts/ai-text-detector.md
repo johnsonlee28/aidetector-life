@@ -5,6 +5,10 @@ keywords: ["ai text detector", "detect ai text", "ai writing detector", "ai gene
 date: 2026-03-26
 lastmod: 2026-03-26
 draft: false
+
+cover:
+  image: "/images/covers/ai-text-detector.png"
+  alt: "ai-text-detector"
 ---
 
 As AI writing tools become mainstream, distinguishing between human and machine-generated text is increasingly important — for educators, publishers, employers, and content teams alike.
