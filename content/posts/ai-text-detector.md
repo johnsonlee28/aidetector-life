@@ -84,3 +84,13 @@ Yes. We do not store, log, or share submitted text.
 ## Try the AI Text Detector
 
 👉 [Analyze Your Text for Free →](/)
+
+---
+
+## Related Reading
+
+- [AI Content Detector](/posts/ai-content-detector/)
+- [ChatGPT Detector](/posts/chatgpt-detector/)
+- [How to Detect AI Writing](/posts/how-to-detect-ai-writing/)
+- [Try our free AI Detector →](/detector/)
+

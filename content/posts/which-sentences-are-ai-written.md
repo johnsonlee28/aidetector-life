@@ -285,3 +285,13 @@ No. Start with the most heavily flagged sentences and revise selectively. The go
 ### What is the best way to reduce AI-like sentences?
 
 Use a workflow that combines detection, word highlighting, and targeted rewrite suggestions. That is more effective than blindly paraphrasing the full draft.
+
+---
+
+## Related Reading
+
+- [Word Highlighting & False Positives](/posts/ai-detector-word-highlighting-false-positives/)
+- [Rewrite Suggestions Guide](/posts/ai-detector-rewrite-suggestions/)
+- [AI Detector Accuracy](/posts/ai-detector-accuracy/)
+- [Word Highlighting Tool →](/word-highlighting/)
+

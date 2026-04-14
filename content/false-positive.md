@@ -106,3 +106,12 @@ False positives are real, common, and frustrating. The best defense is understan
 Use our transparent detector to see exactly what triggered your score, then edit with purpose.
 
 👉 [Check Your Text — See Every Signal →](/)
+
+---
+
+## Related Reading
+
+- [Why AI Detectors Get It Wrong](/posts/why-ai-detectors-get-it-wrong/)
+- [Word Highlighting Explained](/posts/ai-detector-word-highlighting-false-positives/)
+- [AI Detector Accuracy](/posts/ai-detector-accuracy/)
+

@@ -297,3 +297,13 @@ Sometimes, but not consistently. Heavily edited AI content is much harder to det
 ### What is the best way to use an AI detector?
 
 Use it as one part of a broader review process. Look at the flagged sections, check context, and combine the score with manual judgment instead of trusting the number alone.
+
+---
+
+## Related Reading
+
+- [Why AI Detectors Get It Wrong](/posts/why-ai-detectors-get-it-wrong/)
+- [False Positives Explained](/posts/why-ai-detectors-give-false-positives/)
+- [Word-Level Highlighting Fixes It](/posts/ai-detector-word-highlighting-false-positives/)
+- [Try our free AI Detector →](/detector/)
+

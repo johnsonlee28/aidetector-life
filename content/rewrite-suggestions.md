@@ -116,3 +116,12 @@ Currently optimized for English. Non-English text may produce inaccurate results
 Don't just check your score. Know what to change — and get a head start on how to change it.
 
 👉 [Analyze Your Text and Get Rewrite Suggestions →](/)
+
+---
+
+## Related Reading
+
+- [Rewrite Suggestions Guide](/posts/ai-detector-rewrite-suggestions/)
+- [Which Sentences Are AI-Written?](/posts/which-sentences-are-ai-written/)
+- [AI Humanizer Tips](/ai-humanizer/)
+

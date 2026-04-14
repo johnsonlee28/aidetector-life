@@ -85,3 +85,13 @@ We achieve 93–96% accuracy on unmodified ChatGPT outputs. Accuracy decreases w
 ## Start Detecting Now
 
 👉 [Check Text for ChatGPT →](/)
+
+---
+
+## Related Reading
+
+- [AI Text Detector](/posts/ai-text-detector/)
+- [AI Detector Accuracy](/posts/ai-detector-accuracy/)
+- [Best AI Detector Tools in 2026](/posts/best-ai-detector-tools-2026/)
+- [Try our ChatGPT Detector →](/detector/)
+

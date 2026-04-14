@@ -304,3 +304,13 @@ Yes. They are especially useful when human-written text gets flagged, because th
 ### What is the best workflow for fixing AI-like sentences?
 
 Detect the text, review the highlighted sections, use rewrite suggestions on the flagged areas, then recheck the revised version. That is much better than rewriting everything blindly.
+
+---
+
+## Related Reading
+
+- [Which Sentences Are AI-Written?](/posts/which-sentences-are-ai-written/)
+- [Word Highlighting & False Positives](/posts/ai-detector-word-highlighting-false-positives/)
+- [AI Humanizer Guide](/ai-humanizer/)
+- [Rewrite Suggestions Tool →](/rewrite-suggestions/)
+

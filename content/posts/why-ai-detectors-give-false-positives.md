@@ -145,3 +145,13 @@ When you can see *why* a piece of text scored high, you can fix it intelligently
 - False positive rates of 10–20% are common across major tools
 - The fix: find which phrases were flagged, edit them specifically, re-analyze to confirm
 - No AI detector should be treated as definitive proof — always look at the signals, not just the score
+
+---
+
+## Related Reading
+
+- [Why AI Detectors Get It Wrong](/posts/why-ai-detectors-get-it-wrong/)
+- [Word Highlighting & False Positives](/posts/ai-detector-word-highlighting-false-positives/)
+- [AI Detector Accuracy](/posts/ai-detector-accuracy/)
+- [False Positive Tool →](/false-positive/)
+

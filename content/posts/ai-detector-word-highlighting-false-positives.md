@@ -109,3 +109,13 @@ You deserve to see exactly which words were flagged, exactly why they were flagg
 **Ready to see what's actually triggering your score?**
 
 👉 [Try aidetector.life](https://aidetector.life) — see exactly which words are flagged, not just a score.
+
+---
+
+## Related Reading
+
+- [AI Detector Accuracy in 2026](/posts/ai-detector-accuracy/)
+- [Rewrite Suggestions Guide](/posts/ai-detector-rewrite-suggestions/)
+- [Why AI Detectors Give False Positives](/posts/why-ai-detectors-give-false-positives/)
+- [Word Highlighting Tool →](/word-highlighting/)
+

@@ -103,3 +103,12 @@ It's trained on patterns from ChatGPT, Claude, Gemini, and other major models. I
 Stop guessing which sentences sound robotic. See the exact words flagged — then fix only those.
 
 👉 [Analyze Your Text for Free →](/)
+
+---
+
+## Related Reading
+
+- [Word Highlighting & False Positives](/posts/ai-detector-word-highlighting-false-positives/)
+- [Which Sentences Are AI-Written?](/posts/which-sentences-are-ai-written/)
+- [AI Detector Accuracy](/posts/ai-detector-accuracy/)
+
