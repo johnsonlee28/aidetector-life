@@ -89,3 +89,46 @@ Read more: [AI Detector Accuracy: The Full Picture](/posts/ai-detector-accuracy/
 - [Why AI Detectors Keep Getting It Wrong](/posts/why-ai-detectors-get-it-wrong/)
 - [AI Detector False Positives Explained](/posts/why-ai-detectors-give-false-positives/)
 - [Try AI Detector Free →](/detector/)
+
+
+---
+
+## Detailed Comparisons
+
+Looking for a specific matchup? Read our in-depth comparisons:
+
+- **[GPTZero vs Originality.ai](/compare/gptzero-vs-originality/)** — The two biggest paid detectors, head to head
+- **[ZeroGPT vs GPTZero](/compare/zerogpt-vs-gptzero/)** — Free vs paid: is the upgrade worth it?
+- **[Copyleaks vs Originality.ai](/compare/copyleaks-vs-originality/)** — Education vs agency focus
+
+### Looking for a Free Alternative?
+
+- **[Best GPTZero Alternative](/compare/gptzero-alternative/)** — Free word-level detection
+- **[Best Originality.ai Alternative](/compare/originality-ai-alternative/)** — Stop paying $15/month
+
+---
+
+## Detect by AI Model
+
+Not sure which AI wrote the text? Check model-specific detection:
+
+- [Detect ChatGPT Text](/detect/chatgpt-text/) — GPT-3.5, GPT-4, GPT-4o
+- [Detect Claude Text](/detect/claude-text/) — Anthropic Claude 3, 3.5, 4
+- [Detect Gemini Text](/detect/gemini-text/) — Google Gemini Pro & Ultra
+- [Detect DeepSeek Text](/detect/deepseek-text/) — DeepSeek V3, R1
+- [Detect LLaMA Text](/detect/llama-text/) — Meta LLaMA 3, 3.1
+- [Detect GPT-4 Text](/detect/gpt4-text/) — OpenAI GPT-4 specifically
+- [Detect GPT-4o Text](/detect/gpt4o-text/) — ChatGPT's default model
+
+---
+
+## Best AI Detector by Use Case
+
+- [For Students](/best/ai-detector-for-students/) — Check essays before submitting
+- [For Teachers](/best/ai-detector-for-teachers/) — Review student work with evidence
+- [For Bloggers](/best/ai-detector-for-bloggers/) — Ensure content authenticity
+- [For SEO](/best/ai-detector-for-seo/) — Content quality for search rankings
+- [For Copywriters](/best/ai-detector-for-copywriters/) — Verify client deliverables
+- [For Publishers](/best/ai-detector-for-publishers/) — Manuscript screening
+- [For Hiring](/best/ai-detector-for-hiring/) — Check resumes and cover letters
+- [For Freelancers](/best/ai-detector-for-freelancers/) — Prove your work is original
