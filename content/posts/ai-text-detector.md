@@ -94,3 +94,10 @@ Yes. We do not store, log, or share submitted text.
 - [How to Detect AI Writing](/posts/how-to-detect-ai-writing/)
 - [Try our free AI Detector →](/detector/)
 
+---
+
+## Related Tools & Comparisons
+
+- [Detect GPT-4 Text](/detect/gpt4-text/)
+- [Detect GPT-4o Text](/detect/gpt4o-text/)
+- [Detect DeepSeek Text](/detect/deepseek-text/)

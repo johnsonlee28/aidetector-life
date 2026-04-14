@@ -65,3 +65,10 @@ No. We don't store, log, or train on your text.
 ---
 
 **Check your content now →** [Free AI Detector](/detector/)
+
+---
+
+## Related Articles
+
+- [How to Fix AI-Like Sentences](/posts/ai-detector-rewrite-suggestions/)
+- [Which Sentences Are AI-Written?](/posts/which-sentences-are-ai-written/)

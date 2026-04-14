@@ -126,3 +126,11 @@ Use these methods as signals, not proof. A high AI probability score means *inve
 - [Best Free AI Detectors](/posts/best-free-ai-detectors-no-signup/)
 - [Try our free AI Detector →](/detector/)
 
+---
+
+## Related Tools & Comparisons
+
+- [Try: Detect ChatGPT Text](/detect/chatgpt-text/)
+- [Try: Detect Claude Text](/detect/claude-text/)
+- [Try: Detect LLaMA Text](/detect/llama-text/)
+- [Best AI Detector for Teachers](/best/ai-detector-for-teachers/)

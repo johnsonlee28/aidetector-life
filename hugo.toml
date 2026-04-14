@@ -31,11 +31,6 @@ buildDrafts = false
   [params.homeInfoParams]
     Title = "Detect AI-Generated Text Instantly"
     Content = "Free, fast, and accurate AI content detector. Find out if text was written by ChatGPT, Claude, Gemini, or other AI tools."
-
-  [[params.socialIcons]]
-    name = "twitter"
-    url = "https://twitter.com/aidetectorlife"
-
 [menu]
   [[menu.main]]
     identifier = "tools"
