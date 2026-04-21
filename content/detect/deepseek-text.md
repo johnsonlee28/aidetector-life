@@ -42,7 +42,6 @@ DeepSeek's English output is comparable to GPT-4 in quality. Detection rates are
 ### Can you detect DeepSeek in Chinese?
 Our detector is optimized for English text. Chinese-language detection is on our roadmap.
 
-
 ## See Also
 
 - [Best AI Detector for Students](/best/ai-detector-for-students/)
@@ -50,7 +49,6 @@ Our detector is optimized for English text. Chinese-language detection is on our
 - [GPTZero vs Originality.ai](/compare/gptzero-vs-originality/)
 - [How to Detect AI-Generated Writing](/posts/how-to-detect-ai-writing/)
 - [All AI Model Detectors](/compare/#detect-by-ai-model)
-
 
 ---
 

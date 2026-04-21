@@ -39,7 +39,6 @@ Heavily fine-tuned models produce more varied output, which can reduce detection
 ### Is LLaMA text different from ChatGPT text?
 In base form, LLaMA text tends to be less polished. Fine-tuned versions can be very similar to GPT-4 output.
 
-
 ## See Also
 
 - [Best AI Detector for Students](/best/ai-detector-for-students/)
@@ -47,7 +46,6 @@ In base form, LLaMA text tends to be less polished. Fine-tuned versions can be v
 - [GPTZero vs Originality.ai](/compare/gptzero-vs-originality/)
 - [How to Detect AI-Generated Writing](/posts/how-to-detect-ai-writing/)
 - [All AI Model Detectors](/compare/#detect-by-ai-model)
-
 
 ---
 

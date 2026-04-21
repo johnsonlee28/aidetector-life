@@ -39,7 +39,6 @@ Yes. GPT-4o mini is a smaller, faster model with more repetitive patterns. Detec
 ### Most ChatGPT users are on GPT-4o — is your detector trained for it?
 Yes. GPT-4o is the default model for most ChatGPT interactions, which means it represents the largest share of our training data.
 
-
 ## See Also
 
 - [Best AI Detector for Students](/best/ai-detector-for-students/)
@@ -47,7 +46,6 @@ Yes. GPT-4o is the default model for most ChatGPT interactions, which means it r
 - [GPTZero vs Originality.ai](/compare/gptzero-vs-originality/)
 - [How to Detect AI-Generated Writing](/posts/how-to-detect-ai-writing/)
 - [All AI Model Detectors](/compare/#detect-by-ai-model)
-
 
 ---
 

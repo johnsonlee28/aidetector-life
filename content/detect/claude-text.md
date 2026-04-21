@@ -50,7 +50,6 @@ Our detector identifies text as AI-generated but doesn't specify which model wro
 ### Is this free?
 Yes, completely free. No sign-up, no limits.
 
-
 ## See Also
 
 - [Best AI Detector for Students](/best/ai-detector-for-students/)
@@ -58,7 +57,6 @@ Yes, completely free. No sign-up, no limits.
 - [GPTZero vs Originality.ai](/compare/gptzero-vs-originality/)
 - [How to Detect AI-Generated Writing](/posts/how-to-detect-ai-writing/)
 - [All AI Model Detectors](/compare/#detect-by-ai-model)
-
 
 ---
 

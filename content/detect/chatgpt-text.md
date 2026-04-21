@@ -56,7 +56,6 @@ Light editing (fixing typos, changing a few words) usually doesn't fool detectio
 ### Is this free?
 Yes, 100% free with no usage limits or sign-up required.
 
-
 ## See Also
 
 - [Best AI Detector for Students](/best/ai-detector-for-students/)
@@ -64,7 +63,6 @@ Yes, 100% free with no usage limits or sign-up required.
 - [GPTZero vs Originality.ai](/compare/gptzero-vs-originality/)
 - [How to Detect AI-Generated Writing](/posts/how-to-detect-ai-writing/)
 - [All AI Model Detectors](/compare/#detect-by-ai-model)
-
 
 ---
 

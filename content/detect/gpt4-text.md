@@ -43,7 +43,6 @@ No. GPT-4 is harder to detect than GPT-3.5, but "harder" doesn't mean "impossibl
 ### What about GPT-4 Turbo and GPT-4o?
 GPT-4o produces slightly more conversational text. Detection rates are comparable to GPT-4: 83-90%.
 
-
 ## See Also
 
 - [Best AI Detector for Students](/best/ai-detector-for-students/)
@@ -51,7 +50,6 @@ GPT-4o produces slightly more conversational text. Detection rates are comparabl
 - [GPTZero vs Originality.ai](/compare/gptzero-vs-originality/)
 - [How to Detect AI-Generated Writing](/posts/how-to-detect-ai-writing/)
 - [All AI Model Detectors](/compare/#detect-by-ai-model)
-
 
 ---
 

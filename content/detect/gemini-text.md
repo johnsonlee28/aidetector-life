@@ -43,7 +43,6 @@ Gemini's output quality varies by model. Gemini Ultra is comparable to GPT-4 in 
 ### Can you detect Gemini-rewritten text?
 If Gemini was used to rewrite human text, detection becomes harder. Our heatmap helps identify which sections were modified.
 
-
 ## See Also
 
 - [Best AI Detector for Students](/best/ai-detector-for-students/)
@@ -51,7 +50,6 @@ If Gemini was used to rewrite human text, detection becomes harder. Our heatmap 
 - [GPTZero vs Originality.ai](/compare/gptzero-vs-originality/)
 - [How to Detect AI-Generated Writing](/posts/how-to-detect-ai-writing/)
 - [All AI Model Detectors](/compare/#detect-by-ai-model)
-
 
 ---
 
