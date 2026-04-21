@@ -1,3 +1,12 @@
 how-to-detect-ai-in-thesis
-ai-detection-for-teachers
+ai-detection-for-students
+detecting-ai-generated-thesis
+how-to-detect-ai-in-essay
+detecting-ai-generated-essay
+how-to-detect-ai-in-research-paper
+detecting-ai-generated-research-paper
+how-to-detect-ai-in-code
 detecting-ai-generated-code
+how-to-detect-ai-in-academic-writing
+detecting-ai-generated-academic-writing
+ai-detection-for-teachers
