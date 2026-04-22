@@ -2,8 +2,8 @@
 title: "How To Detect AI In Essay: Practical Detection Guide"
 slug: "how-to-detect-ai-in-essay"
 description: "A practical guide to how to detect ai in essay, with detection logic, review workflow, and real-world use cases."
-date: 2026-04-22
-lastmod: 2026-04-22
+date: 2026-04-23
+lastmod: 2026-04-23
 tags: ["AI Detection", "Content Review", "SEO"]
 ---
 

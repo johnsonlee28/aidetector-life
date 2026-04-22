@@ -2,8 +2,8 @@
 title: "Detecting AI Generated Research Paper: Practical Detection Guide"
 slug: "detecting-ai-generated-research-paper"
 description: "A practical guide to detecting ai generated research paper, with detection logic, review workflow, and real-world use cases."
-date: 2026-04-22
-lastmod: 2026-04-22
+date: 2026-04-23
+lastmod: 2026-04-23
 tags: ["AI Detection", "Content Review", "SEO"]
 ---
 
