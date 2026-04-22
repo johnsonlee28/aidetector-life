@@ -2,8 +2,8 @@
 title: "Detecting AI Generated Thesis: Practical Detection Guide"
 slug: "detecting-ai-generated-thesis"
 description: "A practical guide to detecting ai generated thesis, with detection logic, review workflow, and real-world use cases."
-date: 2026-04-21
-lastmod: 2026-04-21
+date: 2026-04-22
+lastmod: 2026-04-22
 tags: ["AI Detection", "Content Review", "SEO"]
 ---
 

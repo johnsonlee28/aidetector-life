@@ -2,8 +2,8 @@
 title: "AI Detection For Teachers: Practical Detection Guide"
 slug: "ai-detection-for-teachers"
 description: "A practical guide to ai detection for teachers, with detection logic, review workflow, and real-world use cases."
-date: 2026-04-21
-lastmod: 2026-04-21
+date: 2026-04-22
+lastmod: 2026-04-22
 tags: ["AI Detection", "Content Review", "SEO"]
 ---
 

@@ -2,8 +2,8 @@
 title: "How To Detect AI In Code: Practical Detection Guide"
 slug: "how-to-detect-ai-in-code"
 description: "A practical guide to how to detect ai in code, with detection logic, review workflow, and real-world use cases."
-date: 2026-04-21
-lastmod: 2026-04-21
+date: 2026-04-22
+lastmod: 2026-04-22
 tags: ["AI Detection", "Content Review", "SEO"]
 ---
 
