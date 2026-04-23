@@ -74,3 +74,9 @@ Yes, 100% free with no usage limits or sign-up required.
 
 - [ChatGPT Detector — Full Guide](/posts/chatgpt-detector/)
 - [How to Detect AI Writing (7 Methods)](/posts/how-to-detect-ai-writing/)
+---
+
+## Related Resources
+
+- [Best AI Detector in 2026 — Full Comparison](/best-ai-detector/)
+- [How AI Detection Works — Complete Methodology](/how-to-detect-ai-content/)

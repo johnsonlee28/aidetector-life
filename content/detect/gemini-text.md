@@ -61,3 +61,9 @@ If Gemini was used to rewrite human text, detection becomes harder. Our heatmap 
 
 - [AI Content Detector — Complete Guide](/posts/ai-content-detector/)
 - [Which Sentences Are AI-Written?](/posts/which-sentences-are-ai-written/)
+---
+
+## Related Resources
+
+- [Best AI Detector in 2026 — Full Comparison](/best-ai-detector/)
+- [How AI Detection Works — Complete Methodology](/how-to-detect-ai-content/)

@@ -60,3 +60,9 @@ Our detector is optimized for English text. Chinese-language detection is on our
 
 - [AI Text Detector Guide](/posts/ai-text-detector/)
 - [AI Detector Accuracy in 2026](/posts/ai-detector-accuracy/)
+---
+
+## Related Resources
+
+- [Best AI Detector in 2026 — Full Comparison](/best-ai-detector/)
+- [How AI Detection Works — Complete Methodology](/how-to-detect-ai-content/)

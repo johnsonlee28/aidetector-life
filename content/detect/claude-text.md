@@ -68,3 +68,9 @@ Yes, completely free. No sign-up, no limits.
 
 - [AI Content Detector — Complete Guide](/posts/ai-content-detector/)
 - [How Accurate Are AI Detectors Really?](/posts/ai-detector-accuracy/)
+---
+
+## Related Resources
+
+- [Best AI Detector in 2026 — Full Comparison](/best-ai-detector/)
+- [How AI Detection Works — Complete Methodology](/how-to-detect-ai-content/)

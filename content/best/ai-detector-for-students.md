@@ -72,3 +72,9 @@ No. We don't store, log, or use your text for any purpose.
 
 - [5 Best Free AI Detectors (No Sign-Up)](/posts/best-free-ai-detectors-no-signup/)
 - [ChatGPT Detector Guide](/posts/chatgpt-detector/)
+---
+
+## Related Resources
+
+- [Best AI Detector in 2026 — Full Comparison](/best-ai-detector/)
+- [How AI Detection Works — Complete Methodology](/how-to-detect-ai-content/)

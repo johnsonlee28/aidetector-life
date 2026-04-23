@@ -72,3 +72,9 @@ No. We don't store, log, or train on your text.
 
 - [How Accurate Are AI Detectors?](/posts/ai-detector-accuracy/)
 - [Why AI Detectors Give False Positives](/posts/why-ai-detectors-give-false-positives/)
+---
+
+## Related Resources
+
+- [Best AI Detector in 2026 — Full Comparison](/best-ai-detector/)
+- [How AI Detection Works — Complete Methodology](/how-to-detect-ai-content/)

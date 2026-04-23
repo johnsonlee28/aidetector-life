@@ -72,3 +72,9 @@ No. We don't store, log, or train on your text.
 
 - [How to Fix AI-Like Sentences](/posts/ai-detector-rewrite-suggestions/)
 - [Which Sentences Are AI-Written?](/posts/which-sentences-are-ai-written/)
+---
+
+## Related Resources
+
+- [Best AI Detector in 2026 — Full Comparison](/best-ai-detector/)
+- [How AI Detection Works — Complete Methodology](/how-to-detect-ai-content/)

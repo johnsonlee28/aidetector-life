@@ -72,3 +72,9 @@ No. We don't store, log, or train on your text.
 
 - [How Word-Level Highlighting Fixes False Positives](/posts/ai-detector-word-highlighting-false-positives/)
 - [5 Best Free AI Detectors](/posts/best-free-ai-detectors-no-signup/)
+---
+
+## Related Resources
+
+- [Best AI Detector in 2026 — Full Comparison](/best-ai-detector/)
+- [How AI Detection Works — Complete Methodology](/how-to-detect-ai-content/)

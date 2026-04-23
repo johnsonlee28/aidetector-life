@@ -57,3 +57,9 @@ In base form, LLaMA text tends to be less polished. Fine-tuned versions can be v
 
 - [How to Detect AI Writing](/posts/how-to-detect-ai-writing/)
 - [AI Detector Accuracy](/posts/ai-detector-accuracy/)
+---
+
+## Related Resources
+
+- [Best AI Detector in 2026 — Full Comparison](/best-ai-detector/)
+- [How AI Detection Works — Complete Methodology](/how-to-detect-ai-content/)
