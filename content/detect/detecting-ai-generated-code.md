@@ -2,8 +2,8 @@
 title: "Detecting AI Generated Code: Practical Detection Guide"
 slug: "detecting-ai-generated-code"
 description: "A practical guide to detecting ai generated code, with detection logic, review workflow, and real-world use cases."
-date: 2026-04-24
-lastmod: 2026-04-24
+date: 2026-04-25
+lastmod: 2026-04-25
 tags: ["AI Detection", "Content Review", "SEO"]
 ---
 
