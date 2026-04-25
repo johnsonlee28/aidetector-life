@@ -2,8 +2,8 @@
 title: "Detecting AI Generated Essay: Practical Detection Guide"
 slug: "detecting-ai-generated-essay"
 description: "A practical guide to detecting ai generated essay, with detection logic, review workflow, and real-world use cases."
-date: 2026-04-25
-lastmod: 2026-04-25
+date: 2026-04-26
+lastmod: 2026-04-26
 tags: ["AI Detection", "Content Review", "SEO"]
 ---
 
