@@ -4,7 +4,7 @@ description: "Check if text was written by Anthropic's Claude (Claude 3, Claude 
 keywords: ["detect claude text", "claude detector", "claude ai detector", "anthropic claude checker", "is this written by claude"]
 url: "/detect/claude-text/"
 date: 2026-04-14
-lastmod: 2026-04-14
+lastmod: 2026-04-26
 draft: false
 cover:
   image: "/images/covers/detect-claude-text.png"

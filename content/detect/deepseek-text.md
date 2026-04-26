@@ -4,7 +4,7 @@ description: "Check if text was written by DeepSeek AI. Free word-level detectio
 keywords: ["detect deepseek text", "deepseek detector", "deepseek ai checker", "is this written by deepseek"]
 url: "/detect/deepseek-text/"
 date: 2026-04-14
-lastmod: 2026-04-14
+lastmod: 2026-04-26
 draft: false
 cover:
   image: "/images/covers/detect-deepseek-text.png"

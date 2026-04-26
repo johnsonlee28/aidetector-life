@@ -4,7 +4,7 @@ description: "Check if text was written by OpenAI's GPT-4o or GPT-4o mini. Free 
 keywords: ["detect gpt4o text", "gpt-4o detector", "gpt4o mini detector", "is this written by gpt-4o"]
 url: "/detect/gpt4o-text/"
 date: 2026-04-14
-lastmod: 2026-04-14
+lastmod: 2026-04-26
 draft: false
 cover:
   image: "/images/covers/detect-gpt4o-text.png"

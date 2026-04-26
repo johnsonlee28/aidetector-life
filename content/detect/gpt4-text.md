@@ -4,7 +4,7 @@ description: "Check if text was written by OpenAI's GPT-4. Free word-level detec
 keywords: ["detect gpt4 text", "gpt-4 detector", "gpt4 checker", "is this written by gpt-4", "openai gpt-4 detector"]
 url: "/detect/gpt4-text/"
 date: 2026-04-14
-lastmod: 2026-04-14
+lastmod: 2026-04-26
 draft: false
 cover:
   image: "/images/covers/detect-gpt4-text.png"

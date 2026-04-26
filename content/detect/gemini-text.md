@@ -4,7 +4,7 @@ description: "Check if text was written by Google Gemini (Gemini Pro, Gemini Ult
 keywords: ["detect gemini text", "gemini detector", "google gemini detector", "gemini ai checker", "is this written by gemini"]
 url: "/detect/gemini-text/"
 date: 2026-04-14
-lastmod: 2026-04-14
+lastmod: 2026-04-26
 draft: false
 cover:
   image: "/images/covers/detect-gemini-text.png"

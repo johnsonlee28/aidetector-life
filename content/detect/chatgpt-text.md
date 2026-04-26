@@ -4,7 +4,7 @@ description: "Check if text was written by ChatGPT (GPT-3.5, GPT-4, GPT-4o). Fre
 keywords: ["detect chatgpt text", "chatgpt detector", "chatgpt content checker", "gpt-4 detector", "is this written by chatgpt"]
 url: "/detect/chatgpt-text/"
 date: 2026-04-14
-lastmod: 2026-04-14
+lastmod: 2026-04-26
 draft: false
 cover:
   image: "/images/covers/detect-chatgpt-text.png"
