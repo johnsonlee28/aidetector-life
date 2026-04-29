@@ -1,0 +1,19 @@
+{{/* pSEO conversion CTA: route organic visitors to product usage and business intent. */}}
+{{- $section := .Section -}}
+{{- $rel := .RelPermalink -}}
+{{- $show := or (eq $section "best") (eq $section "compare") (eq $rel "/bulk-ai-detection/") (eq $rel "/business/") (eq $rel "/api/") -}}
+{{- if and $show (not (.Param "hideConversionCta")) -}}
+{{- $campaign := cond (eq $section "compare") "compare" (cond (eq $section "best") "best" "pseo") -}}
+{{- $source := replaceRE "^/|/$" "" $rel | replaceRE "/" "-" -}}
+<section class="conversion-cta" data-seo-conversion="cta" data-page-slug="{{ $source }}">
+  <div class="conversion-cta__inner">
+    <p class="conversion-cta__eyebrow">Need a workflow, not just a score?</p>
+    <h2>Check the text now. If you review content at scale, use this as your AI quality-control layer.</h2>
+    <p class="conversion-cta__copy">Start with the free detector, then move to team workflows for bulk checking, editorial QA, client delivery, or academic review.</p>
+    <div class="conversion-cta__actions">
+      <a class="conversion-cta__primary" data-conversion-event="try_detector" href="/detector/?utm_source=pseo&utm_medium=cta&utm_campaign={{ $campaign }}&utm_content={{ $source }}">Try the free detector</a>
+      <a class="conversion-cta__secondary" data-conversion-event="business_interest" href="/business/?utm_source=pseo&utm_medium=cta&utm_campaign={{ $campaign }}&utm_content={{ $source }}">See team / business use cases</a>
+    </div>
+  </div>
+</section>
+{{- end -}}

@@ -52,3 +52,36 @@
     </a>
   </div>
 </div>
+
+{{/* ===== Conversion event hooks for analytics tools ===== */}}
+<script>
+(function(){
+  function sendConversion(name, props){
+    props = props || {};
+    props.page = props.page || location.pathname;
+    if (window.gtag) window.gtag('event', name, props);
+    if (window.plausible) window.plausible(name, {props: props});
+    if (window.umami) window.umami.track(name, props);
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({event: name, conversion: props});
+  }
+  document.addEventListener('click', function(e){
+    var el = e.target.closest('[data-conversion-event]');
+    if (!el) return;
+    sendConversion(el.getAttribute('data-conversion-event'), {
+      href: el.getAttribute('href'),
+      cta_page: location.pathname,
+      cta_text: (el.textContent || '').trim().slice(0,80)
+    });
+  }, true);
+  var analyzeBtn = document.getElementById('analyzeBtn');
+  if (analyzeBtn) {
+    analyzeBtn.addEventListener('click', function(){
+      var text = document.getElementById('inputText');
+      var words = text && text.value ? text.value.trim().split(/\s+/).filter(Boolean).length : 0;
+      sendConversion('detector_analyze_click', {words: words});
+    }, true);
+  }
+})();
+</script>
+
