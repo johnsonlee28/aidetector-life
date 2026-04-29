@@ -53,12 +53,19 @@
   </div>
 </div>
 
+{{/* ===== Vercel Web Analytics ===== */}}
+<script>
+window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
+
 {{/* ===== Conversion event hooks for analytics tools ===== */}}
 <script>
 (function(){
   function sendConversion(name, props){
     props = props || {};
     props.page = props.page || location.pathname;
+    if (window.va) window.va('event', name, props);
     if (window.gtag) window.gtag('event', name, props);
     if (window.plausible) window.plausible(name, {props: props});
     if (window.umami) window.umami.track(name, props);
